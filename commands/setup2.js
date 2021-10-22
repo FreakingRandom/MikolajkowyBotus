@@ -2,7 +2,8 @@ const discord = require('discord.js');
 module.exports.run = async (msg, client, args) => {
     if (msg.member.id !== '285025528442912778' && msg.member.id !== '330768055468818435') {
         msg.delete()
-    } else {
+    } 
+    else {
         msg.delete()
         let iteration = -1
         const newrole = ['1TI1', '1TI2', '1TR', '1TET', '2TI1', '2TI2', '2TR', '2TET', '3TI1', '3TI2', '3TIP', '3TR', '3TRP', '3TET', '4TI1', '4TI2', '4TI3', '4TR1', '4TR2', '4TET']
