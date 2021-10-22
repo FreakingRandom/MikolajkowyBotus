@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "discord.js": "^13.2.0",
+    "node": "^17.0.1",
+    "nodejs": "^0.0.0",
+    "nodemon": "^2.0.14",
+    "npm": "^8.1.1"
+  }
+}
