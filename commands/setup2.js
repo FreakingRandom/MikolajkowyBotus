@@ -37,15 +37,20 @@ module.exports.run = async (msg, client, args) => {
             if (interaction.member.roles.cache.some(role => role.name == 'Zweryfikowany') == false) {
                 interaction.member.roles.add(verify);
                 interaction.member.roles.add(rolefind)
+                await interaction.deferUpdate({ephemeral : true})
+                await interaction.followUp({content:`${(interaction.member.toString())} została ci przypisana ranga ${rolefind}.`,ephemeral:true})
             } 
             else {
-                (async ()=>{
-                    const responsemsg = await msg.channel.send(`${(interaction.member.toString())} masz już przypisaną klasę. Jeśli dołączyłeś do złej klasy napisz do administratora (Freaking_Random#3702 lub Myster#7218).`)
-                    setTimeout(function(){responsemsg.delete()},4000)
-                })()     
+                await interaction.deferUpdate({ephemeral : true})
+                await interaction.followUp({ content: `${(interaction.member.toString())} masz już przypisaną klasę. Jeśli dołączyłeś do złej klasy napisz do administratora (Freaking_Random#3702 lub Myster#7218).`, ephemeral: true });
+                    /*.then(
+                    (async ()=>{
+                        const responsemsg = await msg.channel.send(`${(interaction.member.toString())} masz już przypisaną klasę. Jeśli dołączyłeś do złej klasy napisz do administratora (Freaking_Random#3702 lub Myster#7218).`)
+                        setTimeout(function(){responsemsg.delete()},4000)
+                    
+                    })())*/ 
             }
-            return interaction.deferUpdate()
-               // .catch(console.error)
+            // .catch(console.error)
         });
     }
 }

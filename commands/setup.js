@@ -23,7 +23,7 @@ module.exports.run = async (msg, client, args) => {
 
         })
 
-        const newrole = ['Rocket League', 'Counter Strike', 'Brawlhalla', 'League of Legends']
+        const newrole = ['Rocket League', 'Counter Strike', 'Brawlhalla','League of Legends','WoT']
         var rowtable = []
         newrole.forEach(i => {
             const row = new discord.MessageActionRow()
@@ -46,7 +46,8 @@ module.exports.run = async (msg, client, args) => {
             const rolefind = role.find(role => role.name == interaction.customId)
 
             interaction.member.roles.add(rolefind)
-
+            interaction.deferUpdate()
+            interaction.followUp({content:`${(interaction.member.toString())} została ci przypisana ranga ${rolefind}.`,ephemeral:true})
         });
     }
 }
