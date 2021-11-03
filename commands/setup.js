@@ -23,9 +23,12 @@ module.exports.run = async (msg, client, args) => {
 
         })
 
-        const newrole = ['Rocket League', 'Counter Strike', 'Brawlhalla','League of Legends','WoT']
+        const newrole = ['Rocket League', 'Counter Strike', 'Brawlhalla','League of Legends','World of Tanks','Formuła 1']
+        let iteration = -1
         var rowtable = []
         newrole.forEach(i => {
+            iteration += 1;
+            const imod = iteration % 3;
             const row = new discord.MessageActionRow()
                 .addComponents(
                     new discord.MessageButton()
@@ -34,20 +37,23 @@ module.exports.run = async (msg, client, args) => {
                     .setStyle('DANGER')
                 );
             rowtable.push(row)
-
+            if (imod == 2) {
+                msg.channel.send({
+                    content: 'Wybierz grę w której chcesz uczestniczyć. ⬇️',
+                    components: rowtable
+                });
+                rowtable = []
+            }
         })
-        msg.channel.send({
-            content: 'Wybierz grę w której chcesz uczestniczyć. ⬇️',
-            components: rowtable
-        });
+
         client.on('interactionCreate', async interaction => {
             if (!interaction.isButton()) return;
             const role = (await msg.guild.roles.fetch())
             const rolefind = role.find(role => role.name == interaction.customId)
 
-            interaction.member.roles.add(rolefind)
-            interaction.deferUpdate()
-            interaction.followUp({content:`${(interaction.member.toString())} została ci przypisana ranga ${rolefind}.`,ephemeral:true})
+            await interaction.member.roles.add(rolefind)
+            await interaction.deferUpdate({ephemeral:true})
+            await interaction.followUp({content:`${(interaction.member.toString())} została ci przypisana ranga ${rolefind}.`,ephemeral:true})
         });
     }
 }
