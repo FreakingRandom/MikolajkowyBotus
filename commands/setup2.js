@@ -20,7 +20,7 @@ module.exports.run = async (msg, client, args) => {
                     .setStyle('PRIMARY')
                 );
             rowtable.push(row)
-            if (imod == 4) {
+            if (imod == 4||iteration == 20) {
                 msg.channel.send({
                     content: 'Wybierz swoją klasę. ⬇️',
                     components: rowtable
