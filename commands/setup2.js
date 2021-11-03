@@ -39,6 +39,7 @@ module.exports.run = async (msg, client, args) => {
                 interaction.member.roles.add(rolefind)
                 await interaction.deferUpdate({ephemeral : true})
                 await interaction.followUp({content:`${(interaction.member.toString())} została ci przypisana ranga ${rolefind}.`,ephemeral:true})
+                await interaction.member.setNickname(`[${rolefind.name}]${(interaction.member.user.username)}`)
             } 
             else {
                 await interaction.deferUpdate({ephemeral : true})
