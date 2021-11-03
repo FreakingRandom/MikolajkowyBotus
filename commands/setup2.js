@@ -6,7 +6,7 @@ module.exports.run = async (msg, client, args) => {
     else {
         msg.delete()
         let iteration = -1
-        const newrole = ['1TI1', '1TI2', '1TR', '1TET', '2TI1', '2TI2', '2TR', '2TET', '3TI1', '3TI2', '3TIP', '3TR', '3TRP', '3TET', '4TI1', '4TI2', '4TI3', '4TR1', '4TR2', '4TET']
+        const newrole = ['1TI1', '1TI2', '1TR', '1TET', '2TI1', '2TI2', '2TR', '2TET', '3TI1', '3TI2', '3TIP', '3TR', '3TRP', '3TET','3TEP','4TI1', '4TI2', '4TI3', '4TR1', '4TR2', '4TET']
         const buttontype = [1, 2, 1, 2, 1]
         var rowtable = []
         newrole.forEach(i => {
@@ -44,8 +44,8 @@ module.exports.run = async (msg, client, args) => {
                     setTimeout(function(){responsemsg.delete()},4000)
                 })()     
             }
-            interaction.deferUpdate()
-                .catch(console.error)
+            return interaction.deferUpdate()
+               // .catch(console.error)
         });
     }
 }
